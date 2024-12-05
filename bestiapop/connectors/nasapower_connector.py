@@ -347,7 +347,7 @@ class NASAPowerClimateDataConnector():
                             continue
                         
                         # delete the var_year_lat_lon_df back to zero.
-                        total_climate_df = total_climate_df.append(var_year_lat_lon_df)
+                        total_climate_df = total_climate_df._append(var_year_lat_lon_df)
                         del var_year_lat_lon_df
 
         # Remove any empty lon values from longitude array so as to avoid empty MET generation

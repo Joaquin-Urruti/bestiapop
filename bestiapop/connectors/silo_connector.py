@@ -274,7 +274,8 @@ class SILOClimateDataConnector():
         self.logger.debug('Generating DataFrames')
 
         # empty df to append all the climate_df to
-        total_climate_df = pd.DataFrame()
+        # total_climate_df = pd.DataFrame()
+        df_list = []
 
         # create an empty list to keep track of lon coordinates
         # where there are no values
@@ -313,8 +314,10 @@ class SILOClimateDataConnector():
                             empty_lon_coordinates.append(lon)
                             continue
                         
+                        df_list.append(var_year_lat_lon_df)
+
                         # delete the var_year_lat_lon_df back to zero.
-                        total_climate_df = total_climate_df.append(var_year_lat_lon_df)
+                        total_climate_df = pd.concat(df_list, axis=0)
                         del var_year_lat_lon_df
 
             # We reached the end of the year loop
